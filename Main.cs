@@ -226,7 +226,7 @@ namespace MultiSiteNodeReporterForm
                     }
                     catch
                     {
-                        MessageBox.Show("Email Notifier & Log File Failure, Please Contact Harbortouch at 800-201-0461 ASAP");
+                        MessageBox.Show("Email Notifier & Log File Failure, Please Contact Multisite Support ASAP");
                     }
 
                     Thread.Sleep(21600000); //6 hours or 21.6 million recommended - 21600000
