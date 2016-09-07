@@ -40,7 +40,7 @@ namespace MultiSiteNodeReporterForm
             }
             catch (Exception t)
             {
-                MessageBox.Show("The multisite file could not be read: Please Contact Harbortouch Multisite Support at 800-201-0461");
+                MessageBox.Show("The multisite file could not be read: Please Contact Multisite Support");
                 //MessageBox.Show(t.Message);
             }
 
@@ -53,7 +53,7 @@ namespace MultiSiteNodeReporterForm
             string localIP;
             using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
             {
-                socket.Connect("8.8.8.8", 65530);
+                socket.Connect("8.8.8.8", 53);
                 IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
                 localIP = endPoint.Address.ToString();
             }
@@ -119,7 +119,7 @@ namespace MultiSiteNodeReporterForm
                     client.UseDefaultCredentials = false;
                     client.Credentials = new System.Net.NetworkCredential("SMTP UN", "SMTP PW");
 
-                    MailMessage mm = new MailMessage("multisite@unitedbankcard.com", "tmandell@unitedbankcard.com", "MULTISITE EXTERNAL IP CHANGE AT " + lastLine, "MULTISITE WAN IP CHANGE FROM " + storedIP + " TO " + externalip + " - " + lastLine);
+                    MailMessage mm = new MailMessage("FROM-EMAIL@EMAIL.com", "TO-EMAIL@email.com", "MULTISITE EXTERNAL IP CHANGE AT " + lastLine, "MULTISITE WAN IP CHANGE FROM " + storedIP + " TO " + externalip + " - " + lastLine);
                     mm.BodyEncoding = UTF8Encoding.UTF8;
                     mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
@@ -127,7 +127,7 @@ namespace MultiSiteNodeReporterForm
                 }
                 catch (Exception EXCEP)
                 {
-                    MessageBox.Show(Timez + " - EXTERNAL IP CHANGED TO - " + externalip + " " + lastLine + " Please Contact Harbortouch Multisite Support at 800-201-0461 with ALL of this Information!");
+                    MessageBox.Show(Timez + " - EXTERNAL IP CHANGED TO - " + externalip + " " + lastLine + " Please Contact Multisite Support with ALL of this Information!");
 
 
                     DateTime now = DateTime.Now;
@@ -188,7 +188,7 @@ namespace MultiSiteNodeReporterForm
                     client.UseDefaultCredentials = false;
                     client.Credentials = new System.Net.NetworkCredential("SMTP UN", "SMTP PW");
 
-                    MailMessage mm = new MailMessage("multisite@unitedbankcard.com", "tmandell@unitedbankcard.com", "MULTISITE INTERNAL IP CHANGE AT " + lastLine, "MULTISITE LAN IP CHANGE FROM " + localStoredIP + " TO " + localIP + " - " + lastLine);
+                    MailMessage mm = new MailMessage("FROM-EMAIL@EMAIL.com", "TO-EMAIL@email.com", "MULTISITE INTERNAL IP CHANGE AT " + lastLine, "MULTISITE LAN IP CHANGE FROM " + localStoredIP + " TO " + localIP + " - " + lastLine);
                     mm.BodyEncoding = UTF8Encoding.UTF8;
                     mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
@@ -196,7 +196,7 @@ namespace MultiSiteNodeReporterForm
                 }
                 catch (Exception EXCEP)
                 {
-                    MessageBox.Show(Timez + " - LOCAL IP CHANGED TO - " + localIP + " " + lastLine + " Please Contact Harbortouch Multisite Support at 800-201-0461 with ALL of this Information!");
+                    MessageBox.Show(Timez + " - LOCAL IP CHANGED TO - " + localIP + " " + lastLine + " Please Contact Multisite Support with ALL of this Information!");
 
 
                     DateTime now = DateTime.Now;
@@ -240,4 +240,6 @@ namespace MultiSiteNodeReporterForm
     }
 
 }
+
+
 
