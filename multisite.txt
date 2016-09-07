@@ -1,0 +1,9 @@
+WAN-IP1stLine
+LOCAL-IP2ndLine
+
+
+
+blank space ok, 1,2 and last lines critical for reader
+
+
+SITE NODE DESCRIPTION STRING LAST LINE
