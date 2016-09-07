@@ -157,7 +157,7 @@ namespace MultiSiteNodeReporterForm
                     }
                     catch
                     {
-                        MessageBox.Show("Email Notifier & Log File Failure, Please Contact Harbortouch at 800-201-0461 ASAP");
+                        MessageBox.Show("Email Notifier & Log File Failure, Please Contact Multisite Support ASAP");
                     }
 
                 }
