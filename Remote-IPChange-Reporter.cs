@@ -10,7 +10,7 @@ using System.Linq;
 using System.Net.Sockets;
 
 
-namespace MultiSiteNodeReporterForm
+namespace localSiteNodeReporterForm
 {
     public partial class Form1 : Form
     {
@@ -30,17 +30,17 @@ namespace MultiSiteNodeReporterForm
 
             try
             {
-                using (StreamReader reader = new StreamReader("c:\\multisite.txt"))
+                using (StreamReader reader = new StreamReader("c:\\localSiteInfo.txt"))
                 {
                     storedIP = reader.ReadLine() ?? "";
-                    localStoredIP = File.ReadLines("c:\\multisite.txt").Skip(1).Take(1).First();
+                    localStoredIP = File.ReadLines("c:\\localSiteInfo.txt").Skip(1).Take(1).First();
 
                 }
 
             }
             catch (Exception t)
             {
-                MessageBox.Show("The multisite file could not be read: Please Contact Multisite Support");
+                MessageBox.Show("The localSiteInfo file could not be read: Please Contact Support");
                 //MessageBox.Show(t.Message);
             }
 
@@ -63,13 +63,13 @@ namespace MultiSiteNodeReporterForm
             string Timez = DateTime.Now.ToString();
 
 
-            string lastLine = "---Last Line of Multisite text file Unreadable---";
+            string lastLine = "---Last Line of localSiteInfo text file Unreadable---";
 
 
-            //throw the last line of the multisite text into a variable
+            //throw the last line of the localSiteInfo text into a variable
             try
             {
-                StreamReader r = new StreamReader("c:\\multisite.txt");
+                StreamReader r = new StreamReader("c:\\localSiteInfo.txt");
                 while (r.EndOfStream == false)
                 {
                     lastLine = r.ReadLine();
@@ -77,16 +77,16 @@ namespace MultiSiteNodeReporterForm
             }
             catch (Exception f)
             {
-                //MessageBox.Show("The multisite file could not be read:");
+                //MessageBox.Show("The localSiteInfo file could not be read:");
                 //MessageBox.Show(f.Message);
                 //Too many error messages, only need the first one for file not found
             }
 
 
-            string msTextFile = "No Multiste Text File Data";
+            string msTextFile = "No localSiteInfo Text File Data";
             try
             {
-                using (StreamReader sr = new StreamReader("c:\\multisite.txt"))
+                using (StreamReader sr = new StreamReader("c:\\localSiteInfo.txt"))
                 {
 
                     msTextFile = sr.ReadToEnd();
@@ -95,7 +95,7 @@ namespace MultiSiteNodeReporterForm
             }
             catch (Exception j)
             {
-                //MessageBox.Show("The multisite file could not be read:");
+                //MessageBox.Show("The localSiteInfo file could not be read:");
                 //MessageBox.Show(j.Message);
                 //there were too many messages for the typical HTUser
             }
@@ -119,7 +119,7 @@ namespace MultiSiteNodeReporterForm
                     client.UseDefaultCredentials = false;
                     client.Credentials = new System.Net.NetworkCredential("SMTP UN", "SMTP PW");
 
-                    MailMessage mm = new MailMessage("FROM-EMAIL@EMAIL.com", "TO-EMAIL@email.com", "MULTISITE EXTERNAL IP CHANGE AT " + lastLine, "MULTISITE WAN IP CHANGE FROM " + storedIP + " TO " + externalip + " - " + lastLine);
+                    MailMessage mm = new MailMessage("FROM-EMAIL@EMAIL.com", "TO-EMAIL@email.com", "EXTERNAL IP CHANGE AT " + lastLine, "WAN IP CHANGE FROM " + storedIP + " TO " + externalip + " - " + lastLine);
                     mm.BodyEncoding = UTF8Encoding.UTF8;
                     mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
@@ -127,7 +127,7 @@ namespace MultiSiteNodeReporterForm
                 }
                 catch (Exception EXCEP)
                 {
-                    MessageBox.Show(Timez + " - EXTERNAL IP CHANGED TO - " + externalip + " " + lastLine + " Please Contact Multisite Support with ALL of this Information!");
+                    MessageBox.Show(Timez + " - EXTERNAL IP CHANGED TO - " + externalip + " " + lastLine + " Please Contact Support with ALL of this Information!");
 
 
                     DateTime now = DateTime.Now;
@@ -135,14 +135,14 @@ namespace MultiSiteNodeReporterForm
 
                     try
                     {
-                        string path = @"c:\multisiteLog.txt";
+                        string path = @"c:\localSiteInfoLog.txt";
                         // This text is added only once to the file.
                         if (!File.Exists(path))
                         {
                             // Create a file to write to.
                             using (StreamWriter sw = File.CreateText(path))
                             {
-                                sw.WriteLine("MultiSiteLog.txt Log File Begin");
+                                sw.WriteLine("localSiteInfoLog.txt Log File Begin");
                             }
                         }
 
@@ -157,7 +157,7 @@ namespace MultiSiteNodeReporterForm
                     }
                     catch
                     {
-                        MessageBox.Show("Email Notifier & Log File Failure, Please Contact Multisite Support ASAP");
+                        MessageBox.Show("Email Notifier & Log File Failure, Please Contact Support ASAP");
                     }
 
                 }
@@ -188,7 +188,7 @@ namespace MultiSiteNodeReporterForm
                     client.UseDefaultCredentials = false;
                     client.Credentials = new System.Net.NetworkCredential("SMTP UN", "SMTP PW");
 
-                    MailMessage mm = new MailMessage("FROM-EMAIL@EMAIL.com", "TO-EMAIL@email.com", "MULTISITE INTERNAL IP CHANGE AT " + lastLine, "MULTISITE LAN IP CHANGE FROM " + localStoredIP + " TO " + localIP + " - " + lastLine);
+                    MailMessage mm = new MailMessage("FROM-EMAIL@EMAIL.com", "TO-EMAIL@email.com", "INTERNAL IP CHANGE AT " + lastLine, "LAN IP CHANGE FROM " + localStoredIP + " TO " + localIP + " - " + lastLine);
                     mm.BodyEncoding = UTF8Encoding.UTF8;
                     mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
@@ -196,7 +196,7 @@ namespace MultiSiteNodeReporterForm
                 }
                 catch (Exception EXCEP)
                 {
-                    MessageBox.Show(Timez + " - LOCAL IP CHANGED TO - " + localIP + " " + lastLine + " Please Contact Multisite Support with ALL of this Information!");
+                    MessageBox.Show(Timez + " - LOCAL IP CHANGED TO - " + localIP + " " + lastLine + " Please Contact Support with ALL of this Information!");
 
 
                     DateTime now = DateTime.Now;
@@ -204,14 +204,14 @@ namespace MultiSiteNodeReporterForm
 
                     try
                     {
-                        string path = @"c:\multisiteLog.txt";
+                        string path = @"c:\localSiteInfoLog.txt";
                         // This text is added only once to the file.
                         if (!File.Exists(path))
                         {
                             // Create a file to write to.
                             using (StreamWriter sw = File.CreateText(path))
                             {
-                                sw.WriteLine("MultiSiteLog.txt Log File Begin");
+                                sw.WriteLine("localSiteInfoLog.txt Log File Begin");
                             }
                         }
 
@@ -226,7 +226,7 @@ namespace MultiSiteNodeReporterForm
                     }
                     catch
                     {
-                        MessageBox.Show("Email Notifier & Log File Failure, Please Contact Multisite Support ASAP");
+                        MessageBox.Show("Email Notifier & Log File Failure, Please Contact Support ASAP");
                     }
 
                     Thread.Sleep(21600000); //6 hours or 21.6 million recommended - 21600000
